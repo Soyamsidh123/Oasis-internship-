@@ -1,0 +1,105 @@
+Enter password: ****************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 19
+Server version: 8.0.39 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> Create database bmi
+    -> Create database bmi;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Create database bmi' at line 2
+mysql> CREATE DATABASE BMI;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> USE BMI;
+Database changed
+mysql> CREATE TABLE bmi_records(
+    -> id INT AUTO_INCREMENT PRIMARY KEY,
+    ->     weight FLOAT NOT NULL,
+    ->     height FLOAT NOT NULL,
+    ->     bmi FLOAT NOT NULL,
+    ->     category VARCHAR(50) );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> SHOW DATABASE BMI
+    -> SHOW DATABASE BMI;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DATABASE BMI
+SHOW DATABASE BMI' at line 1
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| bmi                |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| soyam              |
+| sys                |
+| world              |
++--------------------+
+8 rows in set (0.01 sec)
+
+mysql> CREATE DATABASE bmi_database;
+Query OK, 1 row affected (0.01 sec)
+
+mysql>
+mysql> USE bmi_database;
+Database changed
+mysql>
+mysql> CREATE TABLE bmi_records (
+    ->     id INT AUTO_INCREMENT PRIMARY KEY,
+    ->     weight FLOAT NOT NULL,
+    ->     height FLOAT NOT NULL,
+    ->     bmi FLOAT NOT NULL,
+    ->     category VARCHAR(50)
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> SHOW TABLE bmi_records;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'bmi_records' at line 1
+mysql> DESCRIBE bmi_records;
++----------+-------------+------+-----+---------+----------------+
+| Field    | Type        | Null | Key | Default | Extra          |
++----------+-------------+------+-----+---------+----------------+
+| id       | int         | NO   | PRI | NULL    | auto_increment |
+| weight   | float       | NO   |     | NULL    |                |
+| height   | float       | NO   |     | NULL    |                |
+| bmi      | float       | NO   |     | NULL    |                |
+| category | varchar(50) | YES  |     | NULL    |                |
++----------+-------------+------+-----+---------+----------------+
+5 rows in set (0.01 sec)
+
+mysql> SELECT * FROM bmi_records;
++----+--------+--------+------------+---------------+
+| id | weight | height | bmi        | category      |
++----+--------+--------+------------+---------------+
+|  1 |     80 |    185 | 0.00233747 | Underweight   |
+|  2 |     80 |    185 | 0.00233747 | Underweight   |
+|  3 |     51 |    165 | 0.00187328 | Underweight   |
+|  4 |     51 |   1.65 |    18.7328 | Normal weight |
+|  5 |     80 |   1.84 |    23.6295 | Normal weight |
++----+--------+--------+------------+---------------+
+5 rows in set (0.00 sec)
+
+mysql> DELETE FROM bmi_records
+    -> ORDER BY id
+    -> LIMIT 3;
+Query OK, 3 rows affected (0.01 sec)
+
+mysql> SELECT * FROM bmi_records;
++----+--------+--------+---------+---------------+
+| id | weight | height | bmi     | category      |
++----+--------+--------+---------+---------------+
+|  4 |     51 |   1.65 | 18.7328 | Normal weight |
+|  5 |     80 |   1.84 | 23.6295 | Normal weight |
++----+--------+--------+---------+---------------+
+2 rows in set (0.00 sec)
+
+mysql>
